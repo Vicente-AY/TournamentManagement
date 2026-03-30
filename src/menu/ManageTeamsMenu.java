@@ -27,10 +27,10 @@ public class ManageTeamsMenu {
                     Player.addPlayer(teams);
                     break;
                 case 3:
-                    removePlayer(teams);
+                    Team.removePlayer(teams);
                     break;
                 case 4:
-                    removeTeam(teams);
+                    Team.removeTeam(teams);
                     break;
                 case 5:
                     System.out.println("Returning to Main Menu");

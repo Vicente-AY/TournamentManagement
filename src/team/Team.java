@@ -64,7 +64,7 @@ public class Team {
         System.out.println(sport + " Team " + teamName + " with ID: " + id + " Crated");
     }
 
-    public void removePlayer(ArrayList<Team> teams) {
+    public static void removePlayer(ArrayList<Team> teams) {
 
         Scanner input = new Scanner(System.in);
 
@@ -107,6 +107,46 @@ public class Team {
                 System.out.println("The team has no active Players");
             }
         }
-        System.out.println("ID not found");
+        else {
+            System.out.println("ID not found");
+        }
+    }
+
+    public static void removeTeam(ArrayList<Team> teams){
+
+        Scanner input = new Scanner(System.in);
+
+        int id = 0;
+        Team teamToRemove = null;
+
+        System.out.println("Enter the id of the Team you want to remove");
+        id = input.nextInt();
+        input.nextLine();
+
+        for(Team team : teams){
+            if (team.id == id){
+                teamToRemove = team;
+            }
+        }
+
+        if(teamToRemove != null){
+            if(teamToRemove.members.isEmpty()){
+                System.out.println("Are you sure you want to remove Team ID: " + teamToRemove.id + " " + teamToRemove.name);
+                String delete = input.nextLine();
+                if(delete.equalsIgnoreCase("y") || delete.equalsIgnoreCase("yes")){
+                    teams.remove(teamToRemove);
+                    System.out.println("Team removed");
+                }
+                else{
+                    System.out.println("Operation cancelled");
+                }
+            }
+            else{
+                System.out.println("The team still has active Players. Delete them first");
+            }
+        }
+        else{
+            System.out.println("ID not found");
+        }
     }
 }
