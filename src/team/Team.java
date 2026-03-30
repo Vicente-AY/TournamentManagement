@@ -22,25 +22,25 @@ public class Team {
 
         Scanner input = new Scanner(System.in);
 
-        int id =  0;
+        int id = 0;
         for (Team team : teams) {
-            if(team.id == id) {
+            if (team.id == id) {
                 id = team.id;
             }
         }
         id++;
 
-        System.out.println("Introduce the name of the Team");
+        System.out.println("Enter the name of the Team");
         String teamName = input.nextLine();
 
         int option = input.nextInt();
         input.nextLine();
         boolean cont = true;
         Sport sport = null;
-        while(cont){
-            System.out.println("Introduce the Sport of the Team");
+        while (cont) {
+            System.out.println("Enter the Sport of the Team");
             System.out.println("1. Chess | 2. Padel | 3. Basket");
-            switch(option){
+            switch (option) {
                 case 1:
                     sport = Sport.Chess;
                     cont = false;
@@ -62,5 +62,51 @@ public class Team {
         Team newTeam = new Team(id, teamName, sport);
         teams.add(newTeam);
         System.out.println(sport + " Team " + teamName + " with ID: " + id + " Crated");
+    }
+
+    public void removePlayer(ArrayList<Team> teams) {
+
+        Scanner input = new Scanner(System.in);
+
+        System.out.println("Enter the ID of the Team you want to remove a player from");
+        int id = input.nextInt();
+
+        Team teamToRemovePlayer = null;
+
+        for (Team team : teams) {
+            if (team.id == id) {
+                teamToRemovePlayer = team;
+            }
+        }
+
+        Player playerToRemove = null;
+
+        if (teamToRemovePlayer != null) {
+            System.out.println("Enter the option of the Player you want to remove");
+            if (!teamToRemovePlayer.members.isEmpty()) {
+                for (int i = 0; i < teamToRemovePlayer.members.size(); i++) {
+                    System.out.println("Option: " + (i +1) + " Name: " + teamToRemovePlayer.members.get(i).name
+                    + " Surname: " + teamToRemovePlayer.members.get(i).surnames);
+                }
+                int option = input.nextInt();
+                input.nextLine();
+                playerToRemove = teamToRemovePlayer.members.get(option -1);
+
+                System.out.println("Are you sure you want to remove Player ID: " + playerToRemove.id + " Name: " + playerToRemove.name + " " + playerToRemove.surnames + "?");
+                System.out.println("Y/N");
+                String delete = input.nextLine();
+                if (delete.equalsIgnoreCase("y") || delete.equalsIgnoreCase("yes")) {
+                    teamToRemovePlayer.members.remove(playerToRemove);
+                    System.out.println("Player removed");
+                }
+                else{
+                    System.out.println("Operation cancelled");
+                }
+            }
+            else{
+                System.out.println("The team has no active Players");
+            }
+        }
+        System.out.println("ID not found");
     }
 }

@@ -20,7 +20,7 @@ public class Player {
 
         Scanner input = new Scanner(System.in);
 
-        System.out.println("Type the id of the player");
+        System.out.println("Enter the id of the player");
         int id = input.nextInt();
         input.nextLine();
 
@@ -33,10 +33,10 @@ public class Player {
         }
 
         if(teamToAddPlayer != null){
-            System.out.println("Introduce the name of the Player");
+            System.out.println("Enter the name of the Player");
             String name = input.nextLine();
 
-            System.out.println("Introduce the surname of the Player");
+            System.out.println("Enter the surname of the Player");
             String surname = input.nextLine();
 
             Player player = new Player(id, name, surname);
