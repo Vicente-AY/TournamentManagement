@@ -27,7 +27,7 @@ public class Player {
         Team teamToAddPlayer = null;
 
         for(Team team : teams) {
-            if(team.id == id){
+            if(team.id > id){
                 teamToAddPlayer = team;
             }
         }

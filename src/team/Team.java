@@ -24,7 +24,7 @@ public class Team {
 
         int id = 0;
         for (Team team : teams) {
-            if (team.id == id) {
+            if (team.id > id) {
                 id = team.id;
             }
         }
@@ -46,7 +46,7 @@ public class Team {
                     cont = false;
                     break;
                 case 2:
-                    sport = Sport.Padel;
+                    sport = Sport.Padle;
                     cont = false;
                     break;
                 case 3:

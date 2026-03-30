@@ -3,7 +3,7 @@ package team;
 public enum Sport {
 
     Chess(1),
-    Padel(2),
+    Padle(2),
     Basketball(5);
 
     private int value;
