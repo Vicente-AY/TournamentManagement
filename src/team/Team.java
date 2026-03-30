@@ -149,4 +149,22 @@ public class Team {
             System.out.println("ID not found");
         }
     }
+
+
+
+
+    //Getters y setters
+
+    public int getId(){
+        return this.id;
+    }
+    public String getName(){
+        return this.name;
+    }
+    public Sport getSport(){
+        return this.sport;
+    }
+    public ArrayList<Player> getPlayers(){
+        return this.members;
+    }
 }
