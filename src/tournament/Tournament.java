@@ -18,9 +18,10 @@ public class Tournament {
     LocalDateTime startDate = null;
     LocalDateTime endDate = null;
     Location location = null;
+    int maxMatches = 0;
 
 
-    public Tournament(int id, String name, Sport sport, double price, LocalDateTime startDate, Location location){
+    public Tournament(int id, String name, Sport sport, double price, LocalDateTime startDate, Location location, int maxMatches){
 
         this.id = id;
         this.name = name;
@@ -28,6 +29,7 @@ public class Tournament {
         this.price = price;
         this.startDate = startDate;
         this.location = location;
+        this.maxMatches = maxMatches;
     }
 
     public static void createTournament(ArrayList<Tournament> tournaments, ArrayList<Location> locations){
@@ -86,23 +88,105 @@ public class Tournament {
 
         LocalDateTime startDate = LocalDateTime.parse(start, formatter);
 
+        ArrayList<Location> locationSport = new ArrayList<>();
+
         System.out.println("Enter the location: ");
-        for(int i  = 0; i < locations.size(); i++){
-            System.out.println("Option: " + (i + 1) + " " +  locations.get(i).name + " Adress: " + locations.get(i).address);
-            System.out.println("Which has: ");
-            System.out.println(locations.get(i).infrastructure[0] + " Boards of Chess");
-            System.out.println(locations.get(i).infrastructure[1] + " Courts of Padle");
-            System.out.println(locations.get(i).infrastructure[2] + " Courts of Basketball");
+        if(locationSport.isEmpty()) {
+            for (int i = 0; i < locations.size(); i++) {
+                if (sport == Sport.Chess && locations.get(i).freeInfrastructure[0] > 0) {
+                    locationSport.add(locations.get(i));
+                }
+                if (sport == Sport.Padle && locations.get(i).freeInfrastructure[1] > 0) {
+                    locationSport.add(locations.get(i));
+                }
+                if (sport == Sport.Basketball && locations.get(i).freeInfrastructure[2] > 0) {
+                    locationSport.add(locations.get(i));
+                }
+                for (int j = 0; j < locationSport.size(); j++) {
+                    System.out.println("Option: " + (i + 1) + " " + locations.get(i).name + " Adress: " + locations.get(i).address);
+                    System.out.println("Which has available: ");
+                    if(sport == Sport.Chess){
+                        System.out.println(locations.get(i).freeInfrastructure[0] + " Boards of Chess");
+                    }
+                    if(sport == Sport.Padle){
+                        System.out.println(locations.get(i).freeInfrastructure[1] + " Courts of Padle");
+                    }
+                    if(sport == Sport.Basketball){
+                        System.out.println(locations.get(i).freeInfrastructure[2] + " Courts of Basketball");
+                    }
+                }
+            }
+        }
+        else{
+            System.out.println("There are no suitable Locations at the moment");
         }
         int infraOption = input.nextInt();
         input.nextLine();
 
         Location location = locations.get(infraOption -1);
 
-        Tournament newTournament = new Tournament(id, name, sport, price, startDate, location);
+        System.out.println("Enter the total infrastructure you want for the Tournament");
+        int maxMatches = input.nextInt();
+        input.nextLine();
+        if(sport == Sport.Chess) {
+            if (maxMatches < location.freeInfrastructure[0]){
+                location.freeInfrastructure[0] -= maxMatches;
+            }
+            else{
+                System.out.println("Not enough Infrastructure");
+                return;
+            }
+        }
+        if(sport == Sport.Padle) {
+            if(maxMatches > location.freeInfrastructure[1]){
+                location.freeInfrastructure[1] -= maxMatches;
+            }
+            else{
+                System.out.println("Not enough Infrastructure");
+                return;
+            }
+        }
+        if(sport == Sport.Basketball) {
+            if(maxMatches > location.freeInfrastructure[2]){
+                location.freeInfrastructure[2] -= maxMatches;
+            }
+            else{
+                System.out.println("Not enough Infrastructure");
+                return;
+            }
+        }
+
+        Tournament newTournament = new Tournament(id, name, sport, price, startDate, location, maxMatches);
 
         tournaments.add(newTournament);
         System.out.println("Tournament Created");
         System.out.println(newTournament.name + " Tournament of " + newTournament.sport + " will be celebrated at " + newTournament.startDate + " in " + newTournament.location);
+    }
+
+    //Getters and Setters
+
+    public int getId(){
+        return id;
+    }
+    public String getName(){
+        return name;
+    }
+    public Sport getSport(){
+        return sport;
+    }
+    public double getPrice(){
+        return price;
+    }
+    public LocalDateTime getStartDate(){
+        return startDate;
+    }
+    public Location getLocation(){
+        return location;
+    }
+    public int getMaxMatches(){
+        return maxMatches;
+    }
+    public ArrayList<Team> getTeams(){
+        return teams;
     }
 }

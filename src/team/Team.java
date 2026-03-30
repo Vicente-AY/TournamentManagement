@@ -1,6 +1,5 @@
 package team;
 
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -9,7 +8,7 @@ public class Team {
     int id = 0;
     String name = "";
     Sport sport = null;
-    ArrayList<Player> members = new ArrayList<>();
+    ArrayList<Player> players = new ArrayList<>();
 
     public Team(int id, String name, Sport sport) {
 
@@ -83,20 +82,20 @@ public class Team {
 
         if (teamToRemovePlayer != null) {
             System.out.println("Enter the option of the Player you want to remove");
-            if (!teamToRemovePlayer.members.isEmpty()) {
-                for (int i = 0; i < teamToRemovePlayer.members.size(); i++) {
-                    System.out.println("Option: " + (i +1) + " Name: " + teamToRemovePlayer.members.get(i).name
-                    + " Surname: " + teamToRemovePlayer.members.get(i).surnames);
+            if (!teamToRemovePlayer.players.isEmpty()) {
+                for (int i = 0; i < teamToRemovePlayer.players.size(); i++) {
+                    System.out.println("Option: " + (i +1) + " Name: " + teamToRemovePlayer.players.get(i).name
+                    + " Surname: " + teamToRemovePlayer.players.get(i).surnames);
                 }
                 int option = input.nextInt();
                 input.nextLine();
-                playerToRemove = teamToRemovePlayer.members.get(option -1);
+                playerToRemove = teamToRemovePlayer.players.get(option -1);
 
                 System.out.println("Are you sure you want to remove Player ID: " + playerToRemove.id + " Name: " + playerToRemove.name + " " + playerToRemove.surnames + "?");
                 System.out.println("Y/N");
                 String delete = input.nextLine();
                 if (delete.equalsIgnoreCase("y") || delete.equalsIgnoreCase("yes")) {
-                    teamToRemovePlayer.members.remove(playerToRemove);
+                    teamToRemovePlayer.players.remove(playerToRemove);
                     System.out.println("Player removed");
                 }
                 else{
@@ -130,7 +129,7 @@ public class Team {
         }
 
         if(teamToRemove != null){
-            if(teamToRemove.members.isEmpty()){
+            if(teamToRemove.players.isEmpty()){
                 System.out.println("Are you sure you want to remove Team ID: " + teamToRemove.id + " " + teamToRemove.name);
                 String delete = input.nextLine();
                 if(delete.equalsIgnoreCase("y") || delete.equalsIgnoreCase("yes")){
@@ -165,6 +164,6 @@ public class Team {
         return this.sport;
     }
     public ArrayList<Player> getPlayers(){
-        return this.members;
+        return this.players;
     }
 }

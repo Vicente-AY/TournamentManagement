@@ -40,7 +40,7 @@ public class Player {
             String surname = input.nextLine();
 
             Player player = new Player(id, name, surname);
-            teamToAddPlayer.members.add(player);
+            teamToAddPlayer.players.add(player);
             System.out.println("Player " + name + " " + surname + " with ID: " + id + " has been added to the team");
         }
         else{
