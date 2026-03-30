@@ -4,7 +4,7 @@ public enum Sport {
 
     Chess(1),
     Padel(2),
-    Basketball(3);
+    Basketball(5);
 
     private int value;
     Sport(int value) {

@@ -1,12 +1,16 @@
 package menu;
 
+import team.Player;
+import team.Team;
+
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class ManageTeamsMenu {
 
     Scanner input = new Scanner(System.in);
 
-    public void manageTeamsMenu() {
+    public void manageTeamsMenu(ArrayList<Team> teams) {
 
         int choice = 0;
         while(true) {
@@ -17,16 +21,16 @@ public class ManageTeamsMenu {
             input.nextLine();
             switch (choice) {
                 case 1:
-                    addTeam();
+                    Team.addTeam(teams);
                     break;
                 case 2:
-                    addPlayer();
+                    Player.addPlayer(teams);
                     break;
                 case 3:
-                    removePlayer();
+                    removePlayer(teams);
                     break;
                 case 4:
-                    removeTeam();
+                    removeTeam(teams);
                     break;
                 case 5:
                     System.out.println("Returning to Main Menu");
@@ -37,4 +41,6 @@ public class ManageTeamsMenu {
             }
         }
     }
+
+
 }
