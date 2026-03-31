@@ -48,7 +48,8 @@ public class ManageTeamsMenu {
 
         System.out.println("- - - Team List - - -");
         for(Team team : teams) {
-            System.out.println("ID: " + team.getId() + " Name: " + team.getName() + " Compete in: " + team.getSport() + "With: " + team.getPlayers().size() + "/" + team.getSport().getValue() + " Players");
+            System.out.println("ID: " + team.getId() + " Name: " + team.getName() + " Compete in: " + team.getSport() +
+            "With: " + team.getPlayers().size() + "/" + team.getSport().getValue() + " Players");
         }
 
     }
